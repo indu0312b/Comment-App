@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html class="no-js" lang="">
+  <head>
+    <meta charset="utf-8">
+    <title>Comment App | Sign_up </title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link
+      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,500,600,700&displayswap"
+      rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <style>
+        
+	.body {
+            font-family: 'Open Sans', sans-serif !important;
+            background-color: #fff;
+	    display:flex !important;
+	    flex-wrap: wrap !important;
+   	    justify-content: center !important;
+	    
+        }
+	.form-signin {
+	   width: 30%;
+    	   margin: auto;
+        }
+       .form-signin .form-signin-heading,
+       .form-signin .checkbox {
+         margin-bottom: 10px;
+       }
+       .form-signin .checkbox {
+        font-weight: normal;
+	margin-bottom: 10px;
+	padding-bottom:20px;
+       }
+       .form-signin .form-control {
+	   border-color: #bbb;
+	   border-radius:2px;
+        margin-bottom: 10px;
+        font-size: 14px;
+       }
+       .form-signin .form-control:focus {
+       z-index: 5;
+       border-color: #bbb;
+       border-radius:2px;
+       }
+       p{
+        font-size:14px;
+	color:#555;
+	margin-bottom:5px;
+       }
+    </style>
+    </head>
+    <body>
+	<div class="container">
+	   <form class="form-signin" role="form">
+           <h2 class="form-signin-heading" style="text-align:center;margin-top:50px;"><b>Sign Up</b></h2>
+	   <br>
+	   <p style="text-align:center;margin-bottom:50px;">Already have an account?<a href="sign_in.html" style="color:#1473e6;"> Sign In</a>			
+	   <p><label for="email">Email</label></p>
+           <input type="email" class="form-control" required autofocus>
+	   <br>
+	   <p><label for="password">Password</label></p>
+           <input type="password" class="form-control" required>
+	   <br>
+	   <p><label for="secret" >Secret</label></p>
+           <input type="secret" class="form-control" required>
+	   <br>
+             <button class="btn btn-lg btn-primary btn-block" type="submit" id="query">Sign Up</button>
+	   <p style="text-align:center;padding:20px;">By clicking the "Sign Up"button,you arecreating an account,and you agree to the Terms of use.</p>
+ 	    </form>
+         </div>
+	<script>
+function generatePassword() {
+    var length = 16,
+        charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
+        retVal = "";
+    for (var i = 0, n = charset.length; i < length; ++i) {
+        retVal += charset.charAt(Math.floor(Math.random() * n));
+    }
+    return retVal;
+}
+
+
+function updateQuery() {
+  var password = generatePassword();
+  var secret = generateSecret();
+  var sql = `CREATE DATABASE \`${database_email.value}\`;\n`;
+  sql += `GRANT ALL PRIVILEGES ON \`${database_email.value}\`.* TO '${database_password.value}' '${database_secret.value}'@'localhost' IDENTIFIED BY '${password}' '${secret}';`;
+  
+  query.value = sql;
+}
+
+var database_email = document.getElementById("email");
+var database_password = document.getElementById("password");
+var database_secret = document.getElementById("secret");
+var query = document.getElementById("query");
+
+database_email.addEventListener("keyup", () => updateQuery());
+database_password.addEventListener("keyup", () => updateQuery());
+database_secret.addEventListener("keyup", () => updateQuery());
+
+	</script>
+    </body>
+ 
+
+</html>
